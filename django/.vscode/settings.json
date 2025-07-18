@@ -16,19 +16,6 @@
   "prettier.jsxSingleQuote": false,
   "prettier.trailingComma": "es5",
   "prettier.arrowParens": "always",
-  "files.associations": {
-    ".env": "dotenv"
-  },
-  "files.exclude": {
-    "**/__pycache__": true,
-    "**/*.pyc": true,
-    "**/migrations": false
-  },
-  "search.exclude": {
-    "**/__pycache__": true,
-    "**/*.pyc": true,
-    "**/migrations": true
-  },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -40,5 +27,16 @@
   },
   "[django-txt]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "emmet.includeLanguages": { "django-html": "html" },
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/migrations": false
+  },
+  "search.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/migrations": true
   }
 }
