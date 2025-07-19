@@ -1,4 +1,4 @@
-FROM python:3.11.3-alpine3.18
+FROM python:3.13.3-alpine3.18
 LABEL mantainer="exemplo@gmail.com"
 
 # Essa variável de ambiente é usada para controlar se o Python deve 
@@ -26,18 +26,30 @@ EXPOSE 8000
 # imagem como uma nova camada.
 # Agrupar os comandos em um único RUN pode reduzir a quantidade de camadas da 
 # imagem e torná-la mais eficiente.
-RUN python -m venv /venv && \
-  /venv/bin/pip install --upgrade pip && \
-  /venv/bin/pip install -r /djangoapp/requirements.txt && \
-  adduser --disabled-password --no-create-home duser && \
-  mkdir -p /data/web/static && \
-  mkdir -p /data/web/media && \
-  chown -R duser:duser /venv && \
-  chown -R duser:duser /data/web/static && \
-  chown -R duser:duser /data/web/media && \
-  chmod -R 755 /data/web/static && \
-  chmod -R 755 /data/web/media && \
-  chmod -R +x /scripts
+RUN python -m venv /venv
+
+RUN /venv/bin/pip install --upgrade pip
+
+RUN /venv/bin/pip install -r /djangoapp/requirements.txt
+
+RUN adduser -D duser
+
+RUN mkdir -p /data/web/static
+
+RUN mkdir -p /data/web/media
+
+RUN chown -R duser:duser /venv
+
+RUN chown -R duser:duser /data/web/static
+
+RUN chown -R duser:duser /data/web/media
+
+RUN chmod -R 755 /data/web/static
+
+RUN chmod -R 755 /data/web/media
+
+RUN chmod -R +x /scripts
+
 
 # Adiciona a pasta scripts e venv/bin 
 # no $PATH do container.
@@ -47,4 +59,5 @@ ENV PATH="/scripts:/venv/bin:$PATH"
 USER duser
 
 # Executa o arquivo scripts/commands.sh
-CMD ["commands.sh"]
+CMD ["/bin/sh", "/scripts/commands.sh"]
+

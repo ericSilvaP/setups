@@ -28,6 +28,9 @@
   "[django-txt]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "emmet.includeLanguages": { "django-html": "html" },
   "files.exclude": {
     "**/__pycache__": true,
