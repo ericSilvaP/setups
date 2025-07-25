@@ -31,9 +31,26 @@ cp dotenv_files/.env-example dotenv_files/.env
 Edite o `.env` com suas configurações reais de ambiente (nome do projeto, credenciais de banco etc).
 **POSTGRES_HOST** de `.env` deve coincidir com **container_name** de `docker-compose.yml`
 
-3. **Subir os containers Docker:**
+Gere uma nova **SECRET_KEY** e cole no arquivo:
+```bash
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+```
 
-Sempre que alterar o `Dockerfile` ou `docker-compose.yml`, use (certifique-se de estar com o Docker aberto):
+3. **Ajustar o final de linha do arquivo _scripts/commands.sh_**
+
+Garanta que o arquivo `scripts/commands.sh` utilize o padrão de final de linha **LF**, para evitar erros de execução em ambientes Unix/Linux (como Docker).
+
+✅ Como fazer isso no VS Code:
+1. Abra o arquivo `scripts/commands.sh`
+2. No canto inferior direito da janela, clique em `CRLF`
+3. Selecione a opção `LF` (Line Feed)
+4. Salve o arquivo (`Ctrl + S`)
+
+> 💡 Usar `LF` é essencial para scripts shell funcionarem corretamente em containers e sistemas baseados em Linux.
+
+4. **Subir os containers Docker:**
+
+Na primeira vez que for subir o Docker ou sempre que alterar o `Dockerfile` ou `docker-compose.yml`, use (certifique-se de estar com o Docker aberto):
 
 ```bash
 docker-compose up --build
@@ -81,3 +98,10 @@ Este setup já configura um container com PostgreSQL. Certifique-se de que as va
 ## ✅ Pronto para desenvolvimento!
 
 Acesse o app via `http://127.0.0.0:8000` (ou conforme definido no `.env`).
+
+---
+
+## Autoria
+Feito por Eric Silva com base no [repositório][link] de Otávio Miranda.
+
+[link]: https://github.com/luizomf/projeto-blog-django-23/tree/49ac58f943934fe73bafbacd0054928613e74b52
