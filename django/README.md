@@ -14,7 +14,7 @@ Este repositório fornece um setup básico e funcional para iniciar projetos Dja
 
 ## 🚀 Primeiros Passos
 
-1. **Criar um ambiente virtual (recomendado):**
+1. **Criar um ambiente virtual:**
 
 ```bash
 python -m venv .venv
@@ -22,13 +22,14 @@ python -m venv .venv
 
 Não é necessário ativar o ambiente virtual para este projeto, já que tudo está no Docker. O ambiente é necessário para outras funções
 
-2. **Copiar o arquivo `.env` de exemplo:**
+2. **Copiar/renomear o arquivo `.env-example` de exemplo:**
 
 ```bash
 cp dotenv_files/.env-example dotenv_files/.env
 ```
 
 Edite o `.env` com suas configurações reais de ambiente (nome do projeto, credenciais de banco etc).
+**POSTGRES_HOST** de `.env` deve coincidir com **container_name** de `docker-compose.yml`
 
 3. **Subir os containers Docker:**
 
@@ -44,13 +45,6 @@ Caso contrário, apenas:
 docker-compose up -d
 ```
 
-4. **Atualizar o `pip` e instalar o Django localmente (opcional):**
-
-```bash
-python -m pip install --upgrade pip
-pip install django
-```
-
 ---
 
 ## 🐘 Banco de Dados
@@ -62,7 +56,6 @@ Este setup já configura um container com PostgreSQL. Certifique-se de que as va
 ## 📝 Configurações adicionais
 
 - No `Dockerfile`, altere a linha `maintainer` para o seu nome ou email.
-- No `.gitignore`, remova os **comentários** das entradas `.venv` e `.vscode` para garantir que essas pastas sejam ignoradas corretamente.
 
 ---
 
@@ -70,12 +63,12 @@ Este setup já configura um container com PostgreSQL. Certifique-se de que as va
 
 ```
 /
+├── .venv/               # Ambiente virtual local (não incluído no Docker)
 ├── .vscode/             # Configurações do VS Code
 ├── data/                # Diretórios para static e media
 ├── djangoapp/           # Código do projeto Django
 ├── dotenv_files/        # Variáveis de ambiente (.env)
 ├── scripts/             # Scripts utilitários (ex: setup, inicialização)
-├── venv/                # Ambiente virtual local (não incluído no Docker)
 ├── .dockerignore        # Arquivos ignorados pelo Docker
 ├── .gitignore           # Arquivos/pastas ignorados pelo Git
 ├── docker-compose.yml   # Orquestração dos containers

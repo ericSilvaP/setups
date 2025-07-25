@@ -1,6 +1,5 @@
 services:
   djangoapp:
-    container_name: djangoapp
     build:
       context: .
     ports:
@@ -14,7 +13,6 @@ services:
     depends_on:
       - psql
   psql:
-    container_name: psql
     image: postgres:14-alpine
     volumes:
       - ./data/postgres/data:/var/lib/postgresql/data/
