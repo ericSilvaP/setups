@@ -3,7 +3,7 @@
   "editor.formatOnSave": true,
   "python.analysis.autoImportCompletions": true,
   "python.analysis.typeCheckingMode": "basic",
-  "python.envFile": "${workspaceFolder}/.env",
+  "python.envFile": "${workspaceFolder}/dotenv_files/.env",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.addMissingImports": "explicit",
@@ -20,15 +20,12 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[python]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "ms-python.black-formatter"
   },
   "[django-html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "monosans.djlint"
   },
   "[django-txt]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[dockerfile]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "emmet.includeLanguages": { "django-html": "html" },
@@ -41,5 +38,6 @@
     "**/__pycache__": true,
     "**/*.pyc": true,
     "**/migrations": true
-  }
+  },
+  "djlint.showInstallError": false
 }
